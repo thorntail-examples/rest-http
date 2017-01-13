@@ -87,7 +87,7 @@ mvn clean install
 1. Get the route url.
 
     ```
-    oc get route/springboot-rest
+    oc get route/wildfly-swarm-rest
     NAME              HOST/PORT                                          PATH      SERVICE                TERMINATION   LABELS
     wildfly-swarm-rest   <HOST_PORT_ADDRESS>             wildfly-swarm-rest:8080
     ```
