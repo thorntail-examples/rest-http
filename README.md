@@ -15,7 +15,7 @@ To customize the message, you can pass as parameter the name of the person that 
 
 You can perform this task in three different ways:
 
-1. Build and launch using Spring Boot.
+1. Build and launch using WildflySwarm.
 1. Build and deploy using OpenShift.
 1. Build, deploy, and authenticate using OpenShift Online.
 
@@ -49,7 +49,7 @@ mvn clean install
 
 # Launch and test
 
-1. Run the following command to start the maven goal of Spring Boot:
+1. Run the following command to start the maven goal of WildFlySwarm:
 
     ```
     mvn wildfly-swarm:run
