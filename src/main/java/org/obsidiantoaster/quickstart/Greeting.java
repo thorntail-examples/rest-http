@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.obsidiantoaster.quickstart.service;
+package org.obsidiantoaster.quickstart;
 
 import java.util.UUID;
 
