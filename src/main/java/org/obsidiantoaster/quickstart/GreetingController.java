@@ -33,6 +33,6 @@ public class GreetingController {
     @Produces("application/json")
     public Greeting greeting(@QueryParam(value="name") String name) {
         String suffix = name !=null ? name : "World";
-        return new Greeting(counter.incrementAndGet(), "Hello "+suffix);
+        return new Greeting(counter.incrementAndGet(), "Hello, "+suffix);
     }
 }
