@@ -44,11 +44,6 @@
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <version.resteasy>3.0.19.Final</version.resteasy>
-
-    <obs.scm.git.connection>scm:git:git://github.com/obsidian-toaster/quick_rest_wildfly-swarm.git</obs.scm.git.connection>
-    <obs.scm.dev.connection>scm:git:git@github.com:obsidian-toaster/.git</obs.scm.dev.connection>
-    <obs.scm.url>http://github.com/obsidian-toaster/quick_rest_wildfly-swarm</obs.scm.url>
-    <obs.scm.tag>HEAD</obs.scm.tag>
   </properties>
 
   <dependencyManagement>
@@ -157,12 +152,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <connection>${obs.scm.git.connection}</connection>
-    <developerConnection>${obs.scm.dev.connection}</developerConnection>
-    <url>${obs.scm.url}</url>
-    <tag>${obs.scm.tag}</tag>
-  </scm>
-
 </project>
