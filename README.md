@@ -102,24 +102,5 @@ mvn clean install
     curl http://<HOST_PORT_ADDRESS>/greeting
     curl http://<HOST_PORT_ADDRESS>/greeting -d name=Bruno
     ```
-
-# Local OpenShift Cluster 
- 
- Alternatively to the openshift online approach, you might run an [openshift cluster locally](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)
- 
- ```
- oc cluster up --version=v1.4.1
- [...]
- OpenShift server started.
-   The server is accessible via web console at:
-       https://<HOST_PORT_ADDRESS>:8443
-
-   You are logged in as:
-       User:     developer
-       Password: developer
-
-   To login as administrator:
-       oc login -u system:admin
- ```
  
  
