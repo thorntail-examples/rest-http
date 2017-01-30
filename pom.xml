@@ -30,7 +30,7 @@
   <packaging>war</packaging>
 
   <name>rest</name>
-  <description>Obsidian :: Quickstart :: WildflySwarm- Rest</description>
+  <description>WildFly Swarm - Rest</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
