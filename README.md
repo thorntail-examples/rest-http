@@ -100,7 +100,7 @@ mvn clean install
     or 
 
     curl http://<HOST_PORT_ADDRESS>/greeting
-    curl http://<HOST_PORT_ADDRESS>/greeting -d name=Bruno
+    curl http://<HOST_PORT_ADDRESS>/greeting?name=Bruno
     ```
  
  
