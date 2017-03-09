@@ -6,41 +6,23 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.wildfly.swarm.Swarm;
-import org.wildfly.swarm.arquillian.CreateSwarm;
-import org.wildfly.swarm.jaxrs.JAXRSArchive;
-import org.wildfly.swarm.jaxrs.JAXRSFraction;
+import org.wildfly.swarm.arquillian.DefaultDeployment;
 
 /**
  * @author Heiko Braun
  */
 @RunWith(Arquillian.class)
-public class JAXRSArquillianTest {
-
-    @Deployment(testable = false)
-    public static Archive createDeployment() throws Exception {
-        JAXRSArchive deployment = ShrinkWrap.create(JAXRSArchive.class, "rest-example.war");
-        deployment.addPackage(GreetingController.class.getPackage());
-        deployment.addAllDependencies();
-        return deployment;
-    }
-
-    @CreateSwarm
-    public static Swarm newContainer() throws Exception {
-        return new Swarm().fraction(new JAXRSFraction());
-    }
+@DefaultDeployment
+public class GreetingServiceTest {
 
     @Test
     @RunAsClient
-    public void testResource() {
+    public void test_service_invocation() {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("http://localhost:8080").path("greeting");
 
