@@ -21,7 +21,7 @@ public class OpenshiftIT {
 
     private static final String APPLICATION_NAME = System.getProperty("app.name");
 
-    private static final OpenShiftTestAssistant openshift = new OpenShiftTestAssistant(APPLICATION_NAME);
+    private static final OpenshiftTestAssistant openshift = new OpenshiftTestAssistant(APPLICATION_NAME);
 
     private static String API_ENDPOINT;
 
