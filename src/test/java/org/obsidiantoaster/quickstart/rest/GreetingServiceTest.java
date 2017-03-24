@@ -1,4 +1,4 @@
-package org.obsidiantoaster.quickstart;
+package org.obsidiantoaster.quickstart.rest;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -24,11 +24,25 @@ public class GreetingServiceTest {
     @RunAsClient
     public void test_service_invocation() {
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8080").path("greeting");
+        WebTarget target = client.target("http://localhost:8080")
+                .path("api").path("greeting");
 
         Response response = target.request(MediaType.APPLICATION_JSON).get();
         Assert.assertEquals(200, response.getStatus());
         Assert.assertTrue(response.readEntity(String.class).contains("Hello, World!"));
+    }
+
+    @Test
+    @RunAsClient
+    public void test_service_invocation_withParam() {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target("http://localhost:8080")
+                .path("api").path("greeting")
+                .queryParam("name", "Peter");
+
+        Response response = target.request(MediaType.APPLICATION_JSON).get();
+        Assert.assertEquals(200, response.getStatus());
+        Assert.assertTrue(response.readEntity(String.class).contains("Hello, Peter!"));
     }
 
 }

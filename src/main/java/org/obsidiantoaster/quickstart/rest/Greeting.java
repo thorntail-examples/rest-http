@@ -14,15 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.obsidiantoaster.quickstart;
-
-import java.util.UUID;
+package org.obsidiantoaster.quickstart.rest;
 
 public class Greeting {
 
     private final long id;
     private final String content;
-    private final static String node = UUID.randomUUID().toString();
 
     public Greeting() {
         this.id = 0;
@@ -42,7 +39,4 @@ public class Greeting {
         return content;
     }
 
-    public String getNode() {
-        return node;
-    }
 }
