@@ -24,8 +24,8 @@
     <version>21</version>
   </parent>
 
-  <groupId>org.obsidiantoaster.quickstart</groupId>
-  <artifactId>wildfly-swarm-rest</artifactId>
+  <groupId>io.openshift.booster</groupId>
+  <artifactId>wfswarm-rest-http</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -214,7 +214,7 @@
                 <namespace.use.existing>${docker.image.user}</namespace.use.existing>
                 <namespace.lazy.enabled>false</namespace.lazy.enabled>
                 <env.init.enabled>false</env.init.enabled>
-                <app.name>wildfly-swarm-rest</app.name>
+                <app.name>wfswarm-rest-http</app.name>
               </systemProperties>
             </configuration>
           </plugin>

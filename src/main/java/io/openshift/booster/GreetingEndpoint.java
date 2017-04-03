@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,9 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.obsidiantoaster.quickstart.rest;
-
-import java.util.concurrent.atomic.AtomicLong;
+package io.openshift.booster;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,15 +22,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 @Path("/")
-public class GreetingController {
+public class GreetingEndpoint {
 
-    private static final AtomicLong counter = new AtomicLong();
+    private static final String template = "Hello, %s!";
 
     @GET
     @Path("/greeting")
     @Produces("application/json")
-    public Greeting greeting(@QueryParam(value="name") String name) {
-        String suffix = name !=null ? name : "World";
-        return new Greeting(counter.incrementAndGet(), "Hello, " + suffix + "!");
+    public Greeting greeting(@QueryParam("name") String name) {
+        String suffix = name != null ? name : "World";
+        return new Greeting(String.format(template, suffix));
     }
 }

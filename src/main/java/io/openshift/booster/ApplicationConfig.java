@@ -1,4 +1,4 @@
-package org.obsidiantoaster.quickstart.rest;
+package io.openshift.booster;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
