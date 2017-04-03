@@ -1,4 +1,4 @@
-package org.obsidiantoaster.quickstart.rest;
+package io.openshift.booster;
 
 import java.io.File;
 import java.io.FileInputStream;
