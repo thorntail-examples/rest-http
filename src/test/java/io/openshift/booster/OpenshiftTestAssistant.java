@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import io.fabric8.kubernetes.api.model.HasMetadata;
 import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.dsl.NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable;
+import io.fabric8.openshift.api.model.DeploymentConfig;
 import io.fabric8.openshift.api.model.Route;
 import io.fabric8.openshift.client.OpenShiftClient;
 import io.restassured.RestAssured;
@@ -32,23 +34,18 @@ public class OpenshiftTestAssistant {
 
 	private final OpenShiftClient client;
 
-	private final String applicationName;
+	private final String project;
 
-	private final String configurationPath;
+	private String applicationName;
 
 	private final Map<String, NamespaceListVisitFromServerGetDeleteRecreateWaitApplicable<HasMetadata, Boolean>> created
 			= new LinkedHashMap<>();
 
 	private String baseUrl;
 
-	public OpenshiftTestAssistant(String applicationName) {
-		this(applicationName, "target/classes/META-INF/fabric8/openshift.yml");
-	}
-
-	public OpenshiftTestAssistant(String applicationName, String configurationPath) {
-		this.applicationName = applicationName;
-		this.configurationPath = configurationPath;
+	public OpenshiftTestAssistant() {
 		this.client = new DefaultKubernetesClient().adapt(OpenShiftClient.class);
+		project = client.getNamespace();
 	}
 
 	public OpenShiftClient getClient() {
@@ -56,7 +53,19 @@ public class OpenshiftTestAssistant {
 	}
 
 	public String deployApplication() throws IOException {
-		deploy(this.applicationName, new File(this.configurationPath));
+		applicationName = System.getProperty("app.name");
+
+		List<? extends HasMetadata> entities
+				= deploy("application", new File("target/classes/META-INF/fabric8/openshift.yml"));
+
+		Optional<String> first = entities.stream()
+				.filter(hm -> hm instanceof DeploymentConfig)
+				.map(hm -> (DeploymentConfig) hm)
+				.map(dc -> dc.getMetadata().getName()).findFirst();
+		if (applicationName == null && first.isPresent()) {
+			applicationName = first.get();
+		}
+
 		Route route = getRoute(this.applicationName);
 
 		this.baseUrl = "http://" + Objects.requireNonNull(route)
@@ -65,13 +74,13 @@ public class OpenshiftTestAssistant {
 
 		System.out.println("Route url: " + this.baseUrl);
 
-		return this.baseUrl;
+		return applicationName;
 	}
 
 	private Route getRoute(String name) {
 		return this.client.adapt(OpenShiftClient.class)
 				.routes()
-				.inNamespace(this.client.getNamespace())
+				.inNamespace(project)
 				.withName(name)
 				.get();
 	}
@@ -129,15 +138,11 @@ public class OpenshiftTestAssistant {
 	private void waitUntilPodIsReady() {
 		Awaitility.await()
 				.atMost(5, TimeUnit.MINUTES)
-				.until(() -> !this.client.pods()
-						.inNamespace(this.client.getNamespace())
-						.list()
-						.getItems()
-						.stream()
+				.until(() -> this.client.pods().inNamespace(project).list().getItems().stream()
 						.filter(this::isThisApplicationPod)
 						.filter(this::isRunning)
 						.collect(Collectors.toList())
-						.isEmpty());
+						.size() >= 1);
 		System.out.println("Pod is running");
 	}
 
