@@ -155,6 +155,11 @@
               </execution>
             </executions>
             <configuration>
+              <enrichers>
+                <config>
+                  <wildfly-swarm-health-check/>
+                </config>
+              </enrichers>
               <generator>
                 <includes>
                   <include>wildfly-swarm</include>
