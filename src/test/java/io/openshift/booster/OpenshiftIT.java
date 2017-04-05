@@ -1,12 +1,9 @@
 package io.openshift.booster;
 
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static io.restassured.RestAssured.expect;
 import static io.restassured.RestAssured.given;
@@ -15,8 +12,6 @@ import static org.hamcrest.Matchers.containsString;
 /**
  * @author Heiko Braun
  */
-@RunWith(Arquillian.class)
-@RunAsClient
 public class OpenshiftIT {
 
     private static final String APPLICATION_NAME = System.getProperty("app.name");
@@ -61,10 +56,10 @@ public class OpenshiftIT {
         given().
             param("name", "Peter").
         expect().
-                statusCode(200).
-                body(containsString("Hello, Peter!")).
-            when().
-                get(API_ENDPOINT);
+            statusCode(200).
+            body(containsString("Hello, Peter!")).
+        when().
+            get(API_ENDPOINT);
     }
 }
 
