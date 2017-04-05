@@ -35,6 +35,14 @@
   <properties>
     <version.wildfly.swarm>2017.3.3</version.wildfly.swarm>
     <version.resteasy>3.0.19.Final</version.resteasy>
+
+    <!-- Readiness and Liveness Probes -->
+    <fabric8.livenessProbe.initialDelaySeconds>5</fabric8.livenessProbe.initialDelaySeconds>
+    <fabric8.livenessProbe.httpGet.path>/api/greeting</fabric8.livenessProbe.httpGet.path>
+    <fabric8.livenessProbe.httpGet.port>8080</fabric8.livenessProbe.httpGet.port>
+    <fabric8.readinessProbe.initialDelaySeconds>5</fabric8.readinessProbe.initialDelaySeconds>
+    <fabric8.readinessProbe.httpGet.path>/api/greeting</fabric8.readinessProbe.httpGet.path>
+    <fabric8.readinessProbe.httpGet.port>8080</fabric8.readinessProbe.httpGet.port>
   </properties>
 
   <dependencyManagement>
@@ -53,10 +61,6 @@
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>jaxrs</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>monitor</artifactId>
     </dependency>
 
     <dependency>
@@ -155,11 +159,6 @@
               </execution>
             </executions>
             <configuration>
-              <enrichers>
-                <config>
-                  <wildfly-swarm-health-check/>
-                </config>
-              </enrichers>
               <generator>
                 <includes>
                   <include>wildfly-swarm</include>
