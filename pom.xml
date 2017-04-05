@@ -40,7 +40,6 @@
     <version.wildfly.swarm>2017.3.3</version.wildfly.swarm>
     <version.resteasy>3.0.19.Final</version.resteasy>
 
-    <fabric8.version>2.2.205</fabric8.version>
     <fabric8.maven.plugin.version>3.1.92</fabric8.maven.plugin.version>
 
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
@@ -53,14 +52,6 @@
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>bom-all</artifactId>
         <version>${version.wildfly.swarm}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-project-bom-with-platform-deps</artifactId>
-        <version>${fabric8.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -90,6 +81,7 @@
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
+      <version>1.1.12.Final</version>
       <scope>test</scope>
     </dependency>
 
