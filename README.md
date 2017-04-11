@@ -1,1 +1,1 @@
-http://openshiftio-appdev-docs-appdev-documentation.tsrv.devshift.net/experience-http-api-wildfly-swarm.html
+http://openshiftio-appdev-docs-appdev-documentation.tsrv.devshift.net/mission-http-api-wf-swarm.html
