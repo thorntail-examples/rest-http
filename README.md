@@ -1,1 +1,1 @@
-http://openshiftio-appdev-docs-appdev-documentation.tsrv.devshift.net/mission-http-api-wf-swarm.html
+http://appdev.openshift.io/mission-http-api-wf-swarm.html
