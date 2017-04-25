@@ -27,7 +27,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>wfswarm-rest-http</artifactId>
-  <version>5-SNAPSHOT</version>
+  <version>5</version>
   <packaging>war</packaging>
 
   <name>Simple HTTP Example</name>
