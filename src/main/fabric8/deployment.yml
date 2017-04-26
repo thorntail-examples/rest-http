@@ -11,3 +11,8 @@ spec:
               path: /api/greeting
               port: 8080
               scheme: HTTP
+          livenessProbe:
+            httpGet:
+              path: /api/greeting
+              port: 8080
+              scheme: HTTP
