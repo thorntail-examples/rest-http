@@ -26,7 +26,7 @@
   </parent>
 
   <groupId>io.openshift.booster</groupId>
-  <artifactId>wfswarm-rest-http</artifactId>
+  <artifactId>app-name</artifactId>
   <version>7-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -34,7 +34,7 @@
   <description>WildFly Swarm - Rest</description>
 
   <properties>
-    <version.wildfly.swarm>2017.4.0</version.wildfly.swarm>
+    <version.wildfly.swarm>2017.6.0</version.wildfly.swarm>
     <version.resteasy>3.0.19.Final</version.resteasy>
   </properties>
 
