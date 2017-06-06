@@ -26,7 +26,7 @@
   </parent>
 
   <groupId>io.openshift.booster</groupId>
-  <artifactId>app-name</artifactId>
+  <artifactId>wfswarm-rest-http</artifactId>
   <version>7-SNAPSHOT</version>
   <packaging>war</packaging>
 
