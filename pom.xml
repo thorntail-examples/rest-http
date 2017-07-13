@@ -22,7 +22,7 @@
   <parent>
     <groupId>io.openshift</groupId>
     <artifactId>booster-parent</artifactId>
-    <version>4</version>
+    <version>5</version>
   </parent>
 
   <groupId>io.openshift.booster</groupId>
@@ -34,7 +34,7 @@
   <description>WildFly Swarm - Rest</description>
 
   <properties>
-    <version.wildfly.swarm>2017.6.1</version.wildfly.swarm>
+    <version.wildfly.swarm>2017.7.0</version.wildfly.swarm>
     <version.resteasy>3.0.19.Final</version.resteasy>
   </properties>
 
