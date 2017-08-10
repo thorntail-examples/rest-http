@@ -1,2 +1,7 @@
 name: WildFly Swarm - HTTP
 description: Runs a WildFly Swarm HTTP application
+versions:
+- id: community
+  name: Community Runtime
+- id: redhat
+  name: Red Hat Runtime
