@@ -34,7 +34,7 @@
   <description>WildFly Swarm - Rest</description>
 
   <properties>
-    <version.wildfly.swarm>2017.8.1</version.wildfly.swarm>
+    <version.wildfly.swarm>2017.9.4</version.wildfly.swarm>
     <version.resteasy>3.0.19.Final</version.resteasy>
   </properties>
 
