@@ -129,6 +129,12 @@
             <xsl:when test="$filename = 'creative commons attribution 2.5 - legalcode'">
                 <xsl:text>creative commons attribution 2.5.html</xsl:text>
             </xsl:when>
+            <xsl:when test="$filename = 'the mit license - mit'">
+                <xsl:text>the mit license - mit.txt</xsl:text>
+            </xsl:when>
+            <xsl:when test="$filename = 'common development and distribution license (cddl) and gnu public license v.2 w/classpath exception - cddl-gplv2.html'">
+                <xsl:text>common development and distribution license (cddl) and gnu public license v.2 w_classpath exception - cddl-gplv2.html</xsl:text>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$filename"/>
             </xsl:otherwise>
