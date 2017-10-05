@@ -2,6 +2,6 @@ name: WildFly Swarm - HTTP
 description: Runs a WildFly Swarm HTTP application
 versions:
   - id: community
-    name: 2017.9.5 (Community)
+    name: 2017.10.0 (Community)
   - id: redhat
     name: 7.0.0.redhat-6 (RHOAR)
