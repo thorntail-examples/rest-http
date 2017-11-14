@@ -27,7 +27,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>wfswarm-rest-http</artifactId>
-  <version>7.0.0-redhat-5-SNAPSHOT</version>
+  <version>7.0.0-redhat-6-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Simple HTTP Example</name>
