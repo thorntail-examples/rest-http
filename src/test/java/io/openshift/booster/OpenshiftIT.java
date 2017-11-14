@@ -40,7 +40,7 @@ import static org.hamcrest.Matchers.containsString;
 @RunWith(Arquillian.class)
 public class OpenshiftIT {
 
-    @RouteURL("wfswarm-rest-http")
+    @RouteURL("${app.name}")
     private URL url;
 
     @Before
