@@ -18,6 +18,8 @@
 
 package io.openshift.booster;
 
+import com.jayway.restassured.builder.RequestSpecBuilder;
+import com.jayway.restassured.specification.RequestSpecification;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -43,36 +45,35 @@ public class OpenshiftIT {
     @RouteURL("${app.name}")
     private URL url;
 
+    private RequestSpecification requestSpecification;
+
     @Before
     public void setup() {
-        await().atMost(5, TimeUnit.MINUTES).until(() -> {
-            try {
-                return get(url).getStatusCode() == 200;
-            } catch (Exception e) {
-                return false;
-            }
-        });
-
-        RestAssured.baseURI = url + "api/greeting";
+        String uri = url.toString() + "api/greeting";
+        requestSpecification = new RequestSpecBuilder()
+            .setBaseUri(uri).build();
     }
 
     @Test
     public void testServiceInvocation() {
-        when()
-                .get()
+        given()
+            .spec(requestSpecification)
+        .when()
+            .get()
         .then()
-                .statusCode(200)
-                .body(containsString("Hello, World!"));
+            .statusCode(200)
+            .body(containsString("Hello, World!"));
     }
 
     @Test
     public void testServiceInvocationWithParam() {
         given()
-                .queryParam("name", "Peter")
+            .spec(requestSpecification)
+            .queryParam("name", "Peter")
         .when()
-                .get()
+            .get()
         .then()
-                .statusCode(200)
-                .body(containsString("Hello, Peter!"));
+            .statusCode(200)
+            .body(containsString("Hello, Peter!"));
     }
 }
