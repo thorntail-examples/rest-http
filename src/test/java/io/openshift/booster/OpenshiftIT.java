@@ -24,6 +24,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import com.jayway.restassured.RestAssured;
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
@@ -43,6 +44,7 @@ import static org.hamcrest.Matchers.containsString;
 public class OpenshiftIT {
 
     @RouteURL("${app.name}")
+    @AwaitRoute
     private URL url;
 
     private RequestSpecification requestSpecification;
