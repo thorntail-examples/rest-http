@@ -18,10 +18,13 @@
 
 package io.openshift.booster;
 
+import com.jayway.restassured.builder.RequestSpecBuilder;
+import com.jayway.restassured.specification.RequestSpecification;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import com.jayway.restassured.RestAssured;
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
@@ -41,38 +44,38 @@ import static org.hamcrest.Matchers.containsString;
 public class OpenshiftIT {
 
     @RouteURL("${app.name}")
+    @AwaitRoute
     private URL url;
+
+    private RequestSpecification requestSpecification;
 
     @Before
     public void setup() {
-        await().atMost(5, TimeUnit.MINUTES).until(() -> {
-            try {
-                return get(url).getStatusCode() == 200;
-            } catch (Exception e) {
-                return false;
-            }
-        });
-
-        RestAssured.baseURI = url + "api/greeting";
+        String uri = url.toString() + "api/greeting";
+        requestSpecification = new RequestSpecBuilder()
+            .setBaseUri(uri).build();
     }
 
     @Test
     public void testServiceInvocation() {
-        when()
-                .get()
+        given()
+            .spec(requestSpecification)
+        .when()
+            .get()
         .then()
-                .statusCode(200)
-                .body(containsString("Hello, World!"));
+            .statusCode(200)
+            .body(containsString("Hello, World!"));
     }
 
     @Test
     public void testServiceInvocationWithParam() {
         given()
-                .queryParam("name", "Peter")
+            .spec(requestSpecification)
+            .queryParam("name", "Peter")
         .when()
-                .get()
+            .get()
         .then()
-                .statusCode(200)
-                .body(containsString("Hello, Peter!"));
+            .statusCode(200)
+            .body(containsString("Hello, Peter!"));
     }
 }

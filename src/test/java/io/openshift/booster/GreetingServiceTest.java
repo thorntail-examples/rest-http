@@ -18,6 +18,7 @@
 
 package io.openshift.booster;
 
+import java.net.URL;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -26,6 +27,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,11 +40,14 @@ import org.wildfly.swarm.arquillian.DefaultDeployment;
 @DefaultDeployment
 public class GreetingServiceTest {
 
+    @ArquillianResource
+    URL resource;
+
     @Test
     @RunAsClient
     public void test_service_invocation() {
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8080")
+        WebTarget target = client.target(resource.toString())
                 .path("api").path("greeting");
 
         Response response = target.request(MediaType.APPLICATION_JSON).get();
@@ -54,7 +59,7 @@ public class GreetingServiceTest {
     @RunAsClient
     public void test_service_invocation_withParam() {
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8080")
+        WebTarget target = client.target(resource.toString())
                 .path("api").path("greeting")
                 .queryParam("name", "Peter");
 

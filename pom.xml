@@ -35,7 +35,7 @@
   <properties>
     <version.wildfly.swarm>2017.10.0</version.wildfly.swarm>
     <version.resteasy>3.0.19.Final</version.resteasy>
-    <version.arquillian.cube>1.9.2</version.arquillian.cube>
+    <version.arquillian.cube>1.13.0</version.arquillian.cube>
   </properties>
 
   <dependencyManagement>
