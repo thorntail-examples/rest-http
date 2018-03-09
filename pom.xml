@@ -81,12 +81,14 @@
       <version>${version.restassured}</version>
       <scope>test</scope> 
     </dependency>
+
     <dependency>
         <groupId>org.awaitility</groupId>
         <artifactId>awaitility</artifactId>
         <version>${version.awaitility}</version>
         <scope>test</scope>
-      </dependency>
+    </dependency>
+
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
