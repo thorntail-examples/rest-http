@@ -27,7 +27,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>wfswarm-rest-http</artifactId>
-  <version>12-SNAPSHOT</version>
+  <version>13</version>
   <packaging>war</packaging>
 
   <name>WildFly Swarm Booster - REST API Level 0 Mission</name>
