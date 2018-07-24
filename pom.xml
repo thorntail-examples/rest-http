@@ -27,7 +27,7 @@
 
   <groupId>io.openshift.booster</groupId>
   <artifactId>thorntail-rest-http</artifactId>
-  <version>14</version>
+  <version>15-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Thorntail Booster - REST API Level 0 Mission</name>
