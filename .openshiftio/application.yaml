@@ -25,6 +25,10 @@ parameters:
   displayName: Source Directory
   value: .
   required: true
+- name: RELEASE_VERSION
+  description: The version that would be used to tag the image
+  displayName: release version
+  value: '1'
 - name: GITHUB_WEBHOOK_SECRET
   description: A secret string used to configure the GitHub webhook.
   displayName: GitHub Webhook Secret
@@ -55,7 +59,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: thorntail-rest-http:latest
+        name: thorntail-rest-http:${RELEASE_VERSION}
     postCommit: {}
     resources: {}
     source:
@@ -166,7 +170,7 @@ objects:
         - thorntail
         from:
           kind: ImageStreamTag
-          name: thorntail-rest-http:latest
+          name: thorntail-rest-http:${RELEASE_VERSION}
       type: ImageChange
 - apiVersion: v1
   kind: Route
