@@ -1,1 +1,1 @@
-http://appdev.prod-preview.openshift.io/docs/wf-swarm-runtime.html#mission-http-api-wf-swarm
+https://launcher.fabric8.io/docs/thorntail-runtime.html#mission-rest-http-wf-swarm

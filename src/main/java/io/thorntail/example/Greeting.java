@@ -15,10 +15,9 @@
  *  limitations under the License.
  *
  */
-package io.openshift.booster;
+package io.thorntail.example;
 
 public class Greeting {
-
     private final String content;
 
     public Greeting() {
@@ -32,5 +31,4 @@ public class Greeting {
     public String getContent() {
         return content;
     }
-
 }
