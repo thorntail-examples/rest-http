@@ -15,23 +15,11 @@
  *  limitations under the License.
  *
  */
-package io.openshift.booster;
+package io.thorntail.example;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-@Path("/")
-public class GreetingEndpoint {
-
-    private static final String template = "Hello, %s!";
-
-    @GET
-    @Path("/greeting")
-    @Produces("application/json")
-    public Greeting greeting(@QueryParam("name") String name) {
-        String suffix = name != null ? name : "World";
-        return new Greeting(String.format(template, suffix));
-    }
+@ApplicationPath("/api")
+public class ApplicationConfig extends Application {
 }

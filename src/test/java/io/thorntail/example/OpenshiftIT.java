@@ -15,40 +15,28 @@
  *  limitations under the License.
  *
  */
+package io.thorntail.example;
 
-package io.openshift.booster;
-
-import io.restassured.RestAssured;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.containsString;
 
-/**
- * @author Heiko Braun
- */
 @RunWith(Arquillian.class)
 public class OpenshiftIT {
-
     @RouteURL(value = "${app.name}", path = "/api/greeting")
     @AwaitRoute
     private String url;
 
-    @Before
-    public void setup() {
-        RestAssured.baseURI = url;
-    }
-
     @Test
     public void testServiceInvocation() {
-        when()
+        given()
+                .baseUri(url)
+        .when()
                 .get()
         .then()
                 .statusCode(200)
@@ -58,8 +46,9 @@ public class OpenshiftIT {
     @Test
     public void testServiceInvocationWithParam() {
         given()
-                .queryParam("name", "Peter")
+                .baseUri(url)
         .when()
+                .queryParam("name", "Peter")
                 .get()
         .then()
                 .statusCode(200)
