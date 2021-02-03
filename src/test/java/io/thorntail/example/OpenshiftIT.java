@@ -17,27 +17,19 @@
  */
 package io.thorntail.example;
 
-import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
-import org.arquillian.cube.openshift.impl.enricher.RouteURL;
-import org.jboss.arquillian.junit.Arquillian;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import io.thorntail.openshift.test.OpenShiftTest;
+import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.containsString;
 
-@RunWith(Arquillian.class)
+@OpenShiftTest
 public class OpenshiftIT {
-    @RouteURL(value = "${app.name}", path = "/api/greeting")
-    @AwaitRoute
-    private String url;
-
     @Test
     public void testServiceInvocation() {
-        given()
-                .baseUri(url)
-        .when()
-                .get()
+        when()
+                .get("/api/greeting")
         .then()
                 .statusCode(200)
                 .body(containsString("Hello, World!"));
@@ -46,10 +38,9 @@ public class OpenshiftIT {
     @Test
     public void testServiceInvocationWithParam() {
         given()
-                .baseUri(url)
-        .when()
                 .queryParam("name", "Peter")
-                .get()
+        .when()
+                .get("/api/greeting")
         .then()
                 .statusCode(200)
                 .body(containsString("Hello, Peter!"));
